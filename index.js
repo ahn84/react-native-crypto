@@ -1,6 +1,12 @@
 'use strict'
 
-import { randomBytes } from 'react-native-randombytes'
+import { NativeModules } from 'react-native';
+const { RNRandomBytes } = NativeModules;
+const { randomBytes } = RNRandomBytes;
+
+global.Buffer = global.Buffer || require('buffer').Buffer;
+global.process.version = global.process.version || 'Version: v8.10.0';
+
 exports.randomBytes = exports.rng = exports.pseudoRandomBytes = exports.prng = randomBytes
 
 // implement window.getRandomValues(), for packages that rely on it
